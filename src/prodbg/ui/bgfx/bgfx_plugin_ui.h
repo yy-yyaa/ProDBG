@@ -6,7 +6,7 @@
 
 class BgfxPluginUI : public PluginUI
 {
-	void create(int width, int height);
+	void create(void* window, int width, int height);
 	void destroy();
 
     void init(ViewPluginInstance* instance);

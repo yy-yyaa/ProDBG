@@ -14,6 +14,7 @@
 #include <foundation/apple.h>
 #include <foundation/string.h>
 #include <bgfx.h>
+#include <bgfxplatform.h>
 #include "core/input_state.h"
 #include "ui/bgfx/cursor.h"
 
@@ -830,8 +831,13 @@ void BgfxPluginUI::postUpdate()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void BgfxPluginUI::create(int width, int height)
+void BgfxPluginUI::create(void* window, int width, int height)
 {
+#if BX_PLATFORM_WINDOWS
+    bgfx::winSetHwnd((HWND) window);
+#else
+#endif /* BX_PLATFORM_WINDOWS */
+
     bgfx::init();
     bgfx::reset((uint32_t)width, (uint32_t)height);
     bgfx::setViewSeq(0, true);

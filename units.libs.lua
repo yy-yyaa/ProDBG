@@ -309,15 +309,17 @@ StaticLibrary {
 
     Env = { 
         CPPPATH = { 
-            "src/external/remotery/lib",
+	  { "src/external/bx/include/compat/msvc"; Config = "win64-*-*" },
             "src/external/bgfx/include",
             "src/external/bx/include",
+            "src/external/bgfx/3rdparty",
             "src/external/bgfx/3rdparty/khronos",
         },
         
         CXXOPTS = {
 			{ "-Wno-variadic-macros", "-Wno-everything" ; Config = "macosx-*-*" },
-			{ "/Isrc/external/bx/include/compat/msvc", "/EHsc"; Config = "win64-*-*" },
+			{ "/EHsc /D__STDC_LIMIT_MACROS /D__STDC_FORMAT_MACROS /D__STDC_CONSTANT_MACROS"; Config = "win64-*-*" },
+			{ "/DBGFX_CONFIG_DEBUG=1"; Config = "win64-*-debug" },
         },
     },
 
